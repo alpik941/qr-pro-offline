@@ -5,11 +5,15 @@ import prettier from 'eslint-plugin-prettier';
 import type { Linter } from 'eslint';
 
 export default [
+  {
+    ignores: ['dist/**', 'node_modules/**', 'coverage/**', 'storybook-static/**', '*.config.js', '*.config.ts'],
+  },
   js.configs.recommended,
 
   // App / shared TS code (browser by default)
   {
     files: ['**/*.{ts,tsx}'],
+    ignores: ['dist/**', 'node_modules/**', 'coverage/**', 'storybook-static/**', '*.config.js', '*.config.ts'],
     languageOptions: {
       parser: tsparser,
       parserOptions: {

@@ -31,7 +31,7 @@ function validateConfig(): Config {
     if (!origins) {
       throw new Error('CORS_ORIGINS must be set in production');
     }
-    corsOrigins = origins.split(',').map(origin => origin.trim());
+    corsOrigins = origins.split(',').map((origin) => origin.trim());
   } else {
     corsOrigins = ['http://localhost:5173', 'http://localhost:3000'];
   }
