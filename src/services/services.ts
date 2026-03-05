@@ -69,10 +69,18 @@ export class QrScannerService {
     try {
       await this.scanner.start(
         { facingMode: 'environment' },
-        { fps: 15, qrbox: { width: 250, height: 250 } },
+        {
+          fps: 10,
+          qrbox: { width: 300, height: 300 },
+        },
         onSuccess,
         (msg) => {
-          if (!msg.includes('No QR code found')) {
+          // Filter out common non-error messages
+          if (
+            !msg.includes('No QR code found') &&
+            !msg.includes('NotFoundException') &&
+            !msg.includes('CodeWithPatternNotFoundException')
+          ) {
             onError(msg);
           }
         }
