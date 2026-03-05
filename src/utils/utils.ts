@@ -42,9 +42,23 @@ export const detectDataType = (data: string): DataType => {
 };
 
 export const formatTimestamp = (timestamp: number): string => {
-  return new Intl.DateTimeFormat('en-US', {
+  return formatTimestampWithOptions(timestamp);
+};
+
+export const formatTimestampWithOptions = (
+  timestamp: number,
+  options?: {
+    locale?: string;
+    timeZone?: string;
+  }
+): string => {
+  const locale = options?.locale ?? 'en-US';
+  const timeZone = options?.timeZone;
+
+  return new Intl.DateTimeFormat(locale, {
     dateStyle: 'medium',
     timeStyle: 'short',
+    ...(timeZone ? { timeZone } : {}),
   }).format(new Date(timestamp));
 };
 

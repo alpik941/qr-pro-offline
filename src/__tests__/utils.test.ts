@@ -4,7 +4,7 @@ import {
   formatWifiQR,
   formatVCardQR,
   detectDataType,
-  formatTimestamp,
+  formatTimestampWithOptions,
 } from '../utils/utils';
 
 describe('Utils', () => {
@@ -86,9 +86,10 @@ describe('Utils', () => {
   describe('formatTimestamp', () => {
     it('should format timestamp correctly', () => {
       const timestamp = new Date('2023-01-01T12:00:00Z').getTime();
-      const result = formatTimestamp(timestamp);
+      // Force a deterministic timezone for CI environments
+      const result = formatTimestampWithOptions(timestamp, { timeZone: 'UTC' });
       expect(result).toContain('Jan 1, 2023');
-      expect(result).toContain('3:00 PM');
+      expect(result).toContain('12:00 PM');
     });
   });
 });
