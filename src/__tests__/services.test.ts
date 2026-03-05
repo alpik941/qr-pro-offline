@@ -10,7 +10,9 @@ jest.mock('qrcode', () => ({
 import QRCode from 'qrcode';
 
 interface MockedQRCode {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   toDataURL: jest.MockedFunction<any>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   toString: jest.MockedFunction<any>;
 }
 
