@@ -1,0 +1,5 @@
+{
+  "name": "QR Pro Offline",
+  "description": "A comprehensive offline-first QR code generator and scanner with history tracking, customization options, and file export support.",
+  "requestFramePermissions": ["camera"]
+}
