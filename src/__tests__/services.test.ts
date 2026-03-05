@@ -9,7 +9,12 @@ jest.mock('qrcode', () => ({
 
 import QRCode from 'qrcode';
 
-const mockedQRCode = QRCode as jest.Mocked<typeof QRCode>;
+interface MockedQRCode {
+  toDataURL: jest.MockedFunction<any>;
+  toString: jest.MockedFunction<any>;
+}
+
+const mockedQRCode = QRCode as MockedQRCode;
 
 describe('QrGeneratorService', () => {
   const mockSettings: QrGeneratorSettings = {
