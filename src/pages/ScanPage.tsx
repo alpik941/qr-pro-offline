@@ -15,7 +15,7 @@ import { useQrScanner } from '../hooks/hooks';
 import { isValidUrl } from '../utils/utils';
 
 const ScanPage: React.FC = () => {
-  const { start, stop, scanFile, toggleTorch, isScanning, error, hasTorch, isTorchOn } =
+  const { start, stop, scanFile, toggleTorch, isScanning, isStarting, error, hasTorch, isTorchOn } =
     useQrScanner();
   const [result, setResult] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<'camera' | 'upload'>('camera');
@@ -23,14 +23,14 @@ const ScanPage: React.FC = () => {
 
   const handleStartCamera = () => {
     setResult(null);
-    start('qr-scanner-view', (data) => {
+    void start('qr-scanner-view', (data) => {
       setResult(data);
-      stop();
+      void stop();
     });
   };
 
   const handleStopCamera = () => {
-    stop();
+    void stop();
   };
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -121,9 +121,11 @@ const ScanPage: React.FC = () => {
                     </p>
                     <button
                       onClick={handleStartCamera}
-                      className="btn-primary px-8 py-3 rounded-xl flex items-center justify-center gap-2 mx-auto"
+                      disabled={isStarting}
+                      className={`btn-primary px-8 py-3 rounded-xl flex items-center justify-center gap-2 mx-auto ${isStarting ? 'cursor-wait opacity-70' : ''}`}
                     >
-                      <Camera className="w-5 h-5" /> ENABLE CAMERA
+                      <Camera className="w-5 h-5" />
+                      {isStarting ? 'STARTING CAMERA...' : 'ENABLE CAMERA'}
                     </button>
                   </div>
                 )}

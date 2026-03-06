@@ -33,10 +33,12 @@ export const useQrGenerator = () => {
 
 export const useQrScanner = () => {
   const [isScanning, setIsScanning] = useState(false);
+  const [isStarting, setIsStarting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [hasTorch, setHasTorch] = useState(false);
   const [isTorchOn, setIsTorchOn] = useState(false);
   const scannerService = useRef<QrScannerService | null>(null);
+  const isStartingRef = useRef(false);
   const { addScanned } = useHistoryStore();
 
   useEffect(() => {
@@ -49,7 +51,10 @@ export const useQrScanner = () => {
 
   const start = useCallback(
     async (elementId: string, onResult: (data: string) => void) => {
-      setIsScanning(true);
+      if (isStartingRef.current || isScanning) return;
+
+      isStartingRef.current = true;
+      setIsStarting(true);
       setError(null);
       try {
         await scannerService.current?.startCamera(
@@ -66,19 +71,25 @@ export const useQrScanner = () => {
           },
           (err) => setError(err)
         );
+        setIsScanning(true);
         // Check torch capability after start
         setHasTorch(scannerService.current?.getTorchCapability() || false);
       } catch (err) {
         setIsScanning(false);
         setError(err instanceof Error ? err.message : 'Camera failed');
+      } finally {
+        isStartingRef.current = false;
+        setIsStarting(false);
       }
     },
-    [addScanned]
+    [addScanned, isScanning]
   );
 
   const stop = useCallback(async () => {
+    isStartingRef.current = false;
     await scannerService.current?.stopCamera();
     setIsScanning(false);
+    setIsStarting(false);
     setHasTorch(false);
     setIsTorchOn(false);
   }, []);
@@ -104,5 +115,5 @@ export const useQrScanner = () => {
     [addScanned]
   );
 
-  return { start, stop, scanFile, toggleTorch, isScanning, error, hasTorch, isTorchOn };
+  return { start, stop, scanFile, toggleTorch, isScanning, isStarting, error, hasTorch, isTorchOn };
 };

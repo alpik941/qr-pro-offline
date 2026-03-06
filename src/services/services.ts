@@ -59,48 +59,86 @@ export class QrGeneratorService {
 export class QrScannerService {
   private scanner: Html5Qrcode | null = null;
   private isTorchOn: boolean = false;
+  private operationChain: Promise<void> = Promise.resolve();
+
+  private runExclusive<T>(operation: () => Promise<T>): Promise<T> {
+    const result = this.operationChain.then(operation, operation);
+    this.operationChain = result.then(
+      () => undefined,
+      () => undefined
+    );
+    return result;
+  }
+
+  private async teardownScanner(scanner: Html5Qrcode | null): Promise<void> {
+    if (!scanner) return;
+
+    try {
+      if (scanner.isScanning) {
+        await scanner.stop();
+      }
+    } catch (err) {
+      console.error('Failed to stop camera stream', err);
+    }
+
+    try {
+      scanner.clear();
+    } catch (err) {
+      console.error('Failed to clear scanner instance', err);
+    }
+
+    if (this.scanner === scanner) {
+      this.scanner = null;
+      this.isTorchOn = false;
+    }
+  }
 
   async startCamera(
     elementId: string,
     onSuccess: (text: string) => void,
     onError: (err: string) => void
   ): Promise<void> {
-    this.scanner = new Html5Qrcode(elementId);
-    try {
-      await this.scanner.start(
-        { facingMode: 'environment' },
-        {
-          fps: 10,
-          qrbox: (viewfinderWidth: number, viewfinderHeight: number) => {
-            const size = Math.min(viewfinderWidth, viewfinderHeight) - 80;
-            return { width: size, height: size };
+    await this.runExclusive(async () => {
+      await this.teardownScanner(this.scanner);
+
+      const scanner = new Html5Qrcode(elementId);
+      this.scanner = scanner;
+
+      try {
+        await scanner.start(
+          { facingMode: 'environment' },
+          {
+            fps: 10,
+            qrbox: (viewfinderWidth: number, viewfinderHeight: number) => {
+              const maxSize = Math.min(viewfinderWidth, viewfinderHeight) - 80;
+              const size = Math.max(180, maxSize);
+              return { width: size, height: size };
+            },
           },
-        },
-        onSuccess,
-        (msg) => {
-          // Filter out common non-error messages
-          if (
-            !msg.includes('No QR code found') &&
-            !msg.includes('NotFoundException') &&
-            !msg.includes('CodeWithPatternNotFoundException')
-          ) {
-            onError(msg);
+          onSuccess,
+          (msg) => {
+            // Filter out common non-error messages
+            if (
+              !msg.includes('No QR code found') &&
+              !msg.includes('NotFoundException') &&
+              !msg.includes('CodeWithPatternNotFoundException')
+            ) {
+              onError(msg);
+            }
           }
-        }
-      );
-      this.isTorchOn = false;
-    } catch (err) {
-      throw new Error('Camera access denied or error: ' + err, { cause: err });
-    }
+        );
+        this.isTorchOn = false;
+      } catch (err) {
+        await this.teardownScanner(scanner);
+        throw new Error('Camera access denied or error: ' + err, { cause: err });
+      }
+    });
   }
 
   async stopCamera(): Promise<void> {
-    if (this.scanner && this.scanner.isScanning) {
-      this.isTorchOn = false;
-      await this.scanner.stop();
-      this.scanner.clear();
-      this.scanner = null;
-    }
+    await this.runExclusive(async () => {
+      await this.teardownScanner(this.scanner);
+    });
   }
 
   async setTorch(on: boolean): Promise<void> {
