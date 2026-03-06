@@ -128,3 +128,9 @@
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   }
 }
+
+/* Убирает внутренний viewfinder-квадрат html5-qrcode */
+#qr-scanner-view > div > div[style] {
+  border: none !important;
+  box-shadow: none !important;
+}

@@ -71,7 +71,10 @@ export class QrScannerService {
         { facingMode: 'environment' },
         {
           fps: 10,
-          qrbox: { width: 300, height: 300 },
+          qrbox: (viewfinderWidth: number, viewfinderHeight: number) => {
+            const size = Math.min(viewfinderWidth, viewfinderHeight) - 80;
+            return { width: size, height: size };
+          },
         },
         onSuccess,
         (msg) => {
