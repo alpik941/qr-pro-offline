@@ -130,7 +130,31 @@
 }
 
 /* Убирает внутренний viewfinder-квадрат html5-qrcode */
+#qr-scanner-view {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#qr-scanner-view > div {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+#qr-scanner-view video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
 #qr-scanner-view > div > div[style] {
-  border: none !important;
-  box-shadow: none !important;
+  display: none !important;
+}
+
+#qr-scanner-view img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
 }
