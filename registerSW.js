@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/qr-pro-offline/sw.js', { scope: '/qr-pro-offline/' })})}
