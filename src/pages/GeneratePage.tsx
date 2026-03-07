@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import {
   Download,
   Copy,
@@ -36,6 +36,21 @@ const GeneratePage: React.FC = () => {
   const navigate = useNavigate();
   const [activeType, setActiveType] = useState<DataType>('url');
   const [showAdvanced, setShowAdvanced] = useState(false);
+  const [showMore, setShowMore] = useState(false);
+  const moreRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (moreRef.current && !moreRef.current.contains(event.target as Node)) {
+        setShowMore(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   // States for different types
   const [url, setUrl] = useState('');
@@ -138,15 +153,21 @@ const GeneratePage: React.FC = () => {
                 {t.icon} {t.label}
               </button>
             ))}
-            <div className="relative group">
-              <button className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold text-slate-400 hover:text-white hover:bg-white/5 transition-all">
+            <div className="relative group" ref={moreRef}>
+              <button 
+                onClick={() => setShowMore(!showMore)}
+                className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold text-slate-400 hover:text-white hover:bg-white/5 transition-all"
+              >
                 More <ChevronDown className="w-4 h-4" />
               </button>
-              <div className="absolute top-full left-0 mt-2 w-48 glass-card border-white/10 p-2 hidden group-hover:block z-20 shadow-2xl">
+              <div className={`absolute top-full left-0 mt-2 w-48 glass-card border-white/10 p-2 z-20 shadow-2xl ${showMore ? 'block' : 'hidden'} group-hover:block`}>
                 {moreTypes.map((t) => (
                   <button
                     key={t.id}
-                    onClick={() => setActiveType(t.id as DataType)}
+                    onClick={() => {
+                      setActiveType(t.id as DataType);
+                      setShowMore(false);
+                    }}
                     className="flex items-center gap-3 w-full px-3 py-2 text-sm font-medium text-slate-400 hover:text-[#22c55e] hover:bg-[#22c55e]/5 rounded-lg transition-colors"
                   >
                     {t.icon} {t.label}
