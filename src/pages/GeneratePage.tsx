@@ -154,13 +154,15 @@ const GeneratePage: React.FC = () => {
               </button>
             ))}
             <div className="relative group" ref={moreRef}>
-              <button 
+              <button
                 onClick={() => setShowMore(!showMore)}
                 className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold text-slate-400 hover:text-white hover:bg-white/5 transition-all"
               >
                 More <ChevronDown className="w-4 h-4" />
               </button>
-              <div className={`absolute top-full left-0 mt-2 w-48 glass-card border-white/10 p-2 z-20 shadow-2xl ${showMore ? 'block' : 'hidden'} group-hover:block`}>
+              <div
+                className={`absolute top-full left-0 mt-2 w-48 glass-card border-white/10 p-2 z-20 shadow-2xl ${showMore ? 'block' : 'hidden'} group-hover:block`}
+              >
                 {moreTypes.map((t) => (
                   <button
                     key={t.id}

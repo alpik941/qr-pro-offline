@@ -35,6 +35,9 @@ export default [
         HTMLInputElement: 'readonly',
         ClipboardItem: 'readonly',
         console: 'readonly',
+        HTMLDivElement: 'readonly',
+        MouseEvent: 'readonly',
+        Node: 'readonly',
       },
     },
     plugins: {
