@@ -20,13 +20,13 @@ export const InputWithIcon: React.FC<InputWithIconProps> = ({
 }) => {
   return (
     <div className="relative">
-      <Icon className="absolute left-4 top-5 w-5 h-5 text-[#22c55e]" />
+      <Icon className="absolute left-4 top-5 w-5 h-5 text-[#1C2B3A]" />
       <input
         type="text"
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className={`w-full pl-12 pr-4 py-4 bg-[#1e2d5e] border ${error ? 'border-red-500/50' : 'border-white/10'} rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#22c55e]/50 transition-all ${className}`}
+        className={`w-full pl-12 pr-4 py-4 bg-[#eaf0f6] border ${error ? 'border-red-500/50' : 'border-[#dde5ed]'} rounded-xl text-[#1C2B3A] placeholder:text-[#6b8299] focus:outline-none focus:border-[#1C2B3A] focus:shadow-[0_0_0_3px_rgba(28,43,58,0.08)] transition-all ${className}`}
       />
     </div>
   );

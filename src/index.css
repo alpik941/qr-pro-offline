@@ -2,68 +2,50 @@
 
 @layer base {
   :root {
-    --surface-primary: rgba(255, 255, 255, 0.08);
-    --surface-secondary: #1e2d5e;
-    --surface-accent: #0f1b4c;
-    --border-primary: rgba(255, 255, 255, 0.1);
-    --border-secondary: rgba(255, 255, 255, 0.05);
-    --accent-color: #22c55e;
-    --accent-light: rgba(34, 197, 94, 0.1);
+    --bg: #F4F7FA;
+    --text: #1C2B3A;
+    --text-bright: #0d1e2e;
+    --text-muted: #6b8299;
+    --panel: #ffffff;
+    --panel2: #eaf0f6;
+    --border: #dde5ed;
+    --accent: #1C2B3A;
+    --accent-dim: rgba(28, 43, 58, 0.08);
   }
 
   body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Instrument Sans', sans-serif;
     margin: 0;
     padding: 0;
-    background: var(--surface-accent);
-    color: white;
-  }
-
-  .stars-bg {
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    background: radial-gradient(
-      circle at 50% 50%,
-      var(--surface-secondary) 0%,
-      var(--surface-accent) 100%
-    );
-  }
-
-  .stars-bg::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: radial-gradient(white 1px, transparent 1px);
-    background-size: 50px 50px;
-    opacity: 0.05;
+    background: var(--bg);
+    color: var(--text);
   }
 }
 
 @layer components {
   .glass-card {
-    background: var(--surface-primary);
-    backdrop-filter: blur(12px);
-    border: 1px solid var(--border-primary);
+    background: var(--panel);
+    border: 1px solid var(--border);
     border-radius: 16px;
+    box-shadow: 0 1px 3px rgba(28, 43, 58, 0.04);
   }
 
   .accent-shadow {
-    box-shadow: 0 0 20px rgba(34, 197, 94, 0.25);
+    box-shadow: 0 4px 20px rgba(28, 43, 58, 0.18);
   }
 
   .btn-primary {
-    background: var(--accent-color);
-    color: white;
+    background: var(--accent);
+    color: #F4F7FA;
     font-weight: 700;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 14px 0 rgba(34, 197, 94, 0.39);
+    box-shadow: 0 4px 20px rgba(28, 43, 58, 0.18);
   }
 
   .btn-primary:hover {
-    background: #16a34a;
+    background: #0d1e2e;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(34, 197, 94, 0.23);
+    box-shadow: 0 6px 24px rgba(28, 43, 58, 0.22);
   }
 
   .custom-scrollbar::-webkit-scrollbar {
@@ -71,61 +53,57 @@
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: var(--border-primary);
+    background: var(--border);
     border-radius: 10px;
   }
 
-  /* Input field styles */
   .input-field {
-    background: rgba(30, 45, 94, 0.8); /* var(--surface-secondary) with 0.8 opacity */
-    border: 1px solid var(--border-primary);
+    background: var(--panel2);
+    border: 1px solid var(--border);
     border-radius: 12px;
-    color: white;
+    color: var(--text);
     padding: 16px;
     transition: all 0.3s ease;
   }
 
   .input-field:focus {
     outline: none;
-    border-color: rgba(34, 197, 94, 0.5);
-    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-dim);
   }
 
   .input-field::placeholder {
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--text-muted);
   }
 
-  /* Tab button styles */
   .tab-button {
     transition: all 0.3s ease;
     font-weight: 600;
   }
 
   .tab-button.active {
-    background: linear-gradient(135deg, var(--accent-color) 0%, #16a34a 100%);
-    color: white;
-    box-shadow: 0 4px 14px 0 rgba(34, 197, 94, 0.39);
+    background: var(--accent);
+    color: #F4F7FA;
+    box-shadow: 0 4px 20px rgba(28, 43, 58, 0.18);
   }
 
   .tab-button:hover:not(.active) {
-    background: var(--border-secondary);
-    color: rgba(255, 255, 255, 0.8);
+    background: var(--accent-dim);
+    color: var(--text);
   }
 
-  /* Enhanced glass card variations */
   .glass-card-hover {
-    background: var(--surface-primary);
-    backdrop-filter: blur(12px);
-    border: 1px solid var(--border-primary);
+    background: var(--panel);
+    border: 1px solid var(--border);
     border-radius: 16px;
     transition: all 0.3s ease;
   }
 
   .glass-card-hover:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.2);
+    background: var(--panel);
+    border-color: var(--accent);
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 25px rgba(28, 43, 58, 0.08);
   }
 }
 

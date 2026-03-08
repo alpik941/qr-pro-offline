@@ -59,16 +59,16 @@ const ScanPage: React.FC = () => {
 
   return (
     <div className="max-w-2xl mx-auto space-y-8">
-      <div className="glass-card border-white/10 overflow-hidden shadow-2xl">
+      <div className="glass-card overflow-hidden shadow-sm">
         {/* Tabs */}
-        <div className="flex bg-white/5 p-1 border-b border-white/5">
+        <div className="flex bg-[#eaf0f6] p-1 border-b border-[#dde5ed]">
           <button
             onClick={() => {
               setActiveTab('camera');
               handleStopCamera();
               setResult(null);
             }}
-            className={`flex-1 flex items-center justify-center gap-2 py-4 text-sm font-bold transition-all rounded-t-lg ${activeTab === 'camera' ? 'bg-[#22c55e] text-white accent-shadow' : 'text-slate-400 hover:text-white'}`}
+            className={`flex-1 flex items-center justify-center gap-2 py-4 text-sm font-bold transition-all rounded-t-lg ${activeTab === 'camera' ? 'bg-[#1C2B3A] text-[#F4F7FA] accent-shadow' : 'text-[#6b8299] hover:text-[#1C2B3A]'}`}
           >
             <Camera className="w-4 h-4" /> CAMERA
           </button>
@@ -78,7 +78,7 @@ const ScanPage: React.FC = () => {
               handleStopCamera();
               setResult(null);
             }}
-            className={`flex-1 flex items-center justify-center gap-2 py-4 text-sm font-bold transition-all rounded-t-lg ${activeTab === 'upload' ? 'bg-[#22c55e] text-white accent-shadow' : 'text-slate-400 hover:text-white'}`}
+            className={`flex-1 flex items-center justify-center gap-2 py-4 text-sm font-bold transition-all rounded-t-lg ${activeTab === 'upload' ? 'bg-[#1C2B3A] text-[#F4F7FA] accent-shadow' : 'text-[#6b8299] hover:text-[#1C2B3A]'}`}
           >
             <Upload className="w-4 h-4" /> UPLOAD
           </button>
@@ -87,7 +87,7 @@ const ScanPage: React.FC = () => {
         <div className="p-8">
           {activeTab === 'camera' ? (
             <div className="space-y-6">
-              <div className="relative aspect-square bg-[#1e2d5e] rounded-2xl overflow-hidden flex items-center justify-center border-2 border-white/10">
+              <div className="relative aspect-square bg-[#eaf0f6] rounded-2xl overflow-hidden flex items-center justify-center border-2 border-[#dde5ed]">
                 <div
                   id="qr-scanner-view"
                   className="absolute inset-0 w-full h-full scale-[1.01]"
@@ -97,13 +97,13 @@ const ScanPage: React.FC = () => {
                 {isScanning && (
                   <>
                     {/* Corners */}
-                    <div className="absolute top-10 left-10 w-12 h-12 border-t-4 border-l-4 border-[#22c55e] rounded-tl-lg z-20"></div>
-                    <div className="absolute top-10 right-10 w-12 h-12 border-t-4 border-r-4 border-[#22c55e] rounded-tr-lg z-20"></div>
-                    <div className="absolute bottom-10 left-10 w-12 h-12 border-b-4 border-l-4 border-[#22c55e] rounded-bl-lg z-20"></div>
-                    <div className="absolute bottom-10 right-10 w-12 h-12 border-b-4 border-r-4 border-[#22c55e] rounded-br-lg z-20"></div>
+                    <div className="absolute top-10 left-10 w-12 h-12 border-t-4 border-l-4 border-[#1C2B3A] rounded-tl-lg z-20"></div>
+                    <div className="absolute top-10 right-10 w-12 h-12 border-t-4 border-r-4 border-[#1C2B3A] rounded-tr-lg z-20"></div>
+                    <div className="absolute bottom-10 left-10 w-12 h-12 border-b-4 border-l-4 border-[#1C2B3A] rounded-bl-lg z-20"></div>
+                    <div className="absolute bottom-10 right-10 w-12 h-12 border-b-4 border-r-4 border-[#1C2B3A] rounded-br-lg z-20"></div>
 
                     {/* Static Scanning Line (Animation removed) */}
-                    <div className="absolute top-1/2 left-10 right-10 h-[2px] bg-[#22c55e] z-20 shadow-[0_0_15px_#22c55e]"></div>
+                    <div className="absolute top-1/2 left-10 right-10 h-[2px] bg-[#1C2B3A] z-20 shadow-[0_0_15px_rgba(28,43,58,0.4)]"></div>
 
                     {/* Darkened Overlay */}
                     <div className="absolute inset-0 bg-black/30 z-10 pointer-events-none"></div>
@@ -112,11 +112,11 @@ const ScanPage: React.FC = () => {
 
                 {!isScanning && !result && (
                   <div className="text-center z-10 px-6">
-                    <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6 border border-white/10">
-                      <Scan className="w-10 h-10 text-white/20" />
+                    <div className="w-20 h-20 bg-[rgba(28,43,58,0.08)] rounded-full flex items-center justify-center mx-auto mb-6 border border-[#dde5ed]">
+                      <Scan className="w-10 h-10 text-[#6b8299]" />
                     </div>
-                    <h4 className="text-white font-bold mb-2">Camera is currently inactive</h4>
-                    <p className="text-slate-500 text-sm mb-8 max-w-[240px] mx-auto">
+                    <h4 className="text-[#0d1e2e] font-bold mb-2">Camera is currently inactive</h4>
+                    <p className="text-[#6b8299] text-sm mb-8 max-w-[240px] mx-auto">
                       Click the button below to start real-time scanning
                     </p>
                     <button
@@ -135,7 +135,7 @@ const ScanPage: React.FC = () => {
                     {hasTorch && (
                       <button
                         onClick={toggleTorch}
-                        className={`p-3 rounded-full transition-all shadow-xl backdrop-blur-md ${isTorchOn ? 'bg-[#22c55e] text-white' : 'bg-black/60 text-white hover:bg-black/80'}`}
+                        className={`p-3 rounded-full transition-all shadow-xl backdrop-blur-md ${isTorchOn ? 'bg-[#1C2B3A] text-white' : 'bg-black/60 text-white hover:bg-black/80'}`}
                       >
                         {isTorchOn ? (
                           <Zap className="w-5 h-5 fill-current" />
@@ -158,13 +158,13 @@ const ScanPage: React.FC = () => {
             <div className="space-y-6">
               <div
                 onClick={() => fileInputRef.current?.click()}
-                className="group relative aspect-square border-2 border-dashed border-[#22c55e]/30 hover:border-[#22c55e] hover:bg-[#22c55e]/5 rounded-3xl p-10 text-center cursor-pointer transition-all flex flex-col items-center justify-center bg-white/5"
+                className="group relative aspect-square border-2 border-dashed border-[#dde5ed] hover:border-[#1C2B3A] hover:bg-[rgba(28,43,58,0.08)] rounded-3xl p-10 text-center cursor-pointer transition-all flex flex-col items-center justify-center bg-[#eaf0f6]"
               >
-                <div className="w-24 h-24 bg-[#22c55e]/10 group-hover:bg-[#22c55e]/20 rounded-full flex items-center justify-center mb-6 transition-colors accent-shadow">
-                  <Upload className="w-10 h-10 text-[#22c55e]" />
+                <div className="w-24 h-24 bg-[rgba(28,43,58,0.08)] group-hover:bg-[rgba(28,43,58,0.12)] rounded-full flex items-center justify-center mb-6 transition-colors">
+                  <Upload className="w-10 h-10 text-[#1C2B3A]" />
                 </div>
-                <h3 className="text-xl font-extrabold text-white mb-2">Drop image here</h3>
-                <p className="text-slate-400 text-sm">or click to browse your local files</p>
+                <h3 className="text-xl font-extrabold text-[#0d1e2e] mb-2">Drop image here</h3>
+                <p className="text-[#6b8299] text-sm">or click to browse your local files</p>
                 <input
                   type="file"
                   ref={fileInputRef}
@@ -186,27 +186,27 @@ const ScanPage: React.FC = () => {
           {result && (
             <div className="mt-10 space-y-6 animate-in fade-in slide-in-from-bottom-8 duration-500">
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2 text-[#22c55e]">
+                <div className="flex items-center gap-2 text-[#1C2B3A]">
                   <CheckCircle2 className="w-5 h-5" />
                   <span className="font-extrabold text-sm uppercase tracking-widest">
                     QR CODE DETECTED
                   </span>
                 </div>
-                <span className="px-3 py-1 bg-white/5 rounded-full text-[10px] font-bold text-slate-400 border border-white/10 uppercase">
+                <span className="px-3 py-1 bg-[#eaf0f6] rounded-full text-[10px] font-mono font-bold text-[#6b8299] border border-[#dde5ed] uppercase">
                   {resultType}
                 </span>
               </div>
 
-              <div className="bg-[#1e2d5e] border-l-4 border-[#22c55e] rounded-xl p-6 relative group">
+              <div className="bg-[#eaf0f6] border-l-4 border-[#1C2B3A] rounded-xl p-6 relative group">
                 <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
                   <button
                     onClick={handleCopy}
-                    className="p-2 bg-white/5 rounded-lg text-slate-400 hover:text-white"
+                    className="p-2 bg-white rounded-lg text-[#6b8299] hover:text-[#1C2B3A] border border-[#dde5ed]"
                   >
                     <Copy className="w-4 h-4" />
                   </button>
                 </div>
-                <p className="text-white font-mono text-sm leading-relaxed break-words pr-8">
+                <p className="text-[#1C2B3A] font-mono text-sm leading-relaxed break-words pr-8">
                   {result}
                 </p>
               </div>
@@ -214,7 +214,7 @@ const ScanPage: React.FC = () => {
               <div className="flex flex-col sm:flex-row gap-3">
                 <button
                   onClick={handleCopy}
-                  className="flex-1 py-4 bg-white/5 border border-white/10 rounded-xl text-sm font-bold text-white hover:bg-white/10 flex items-center justify-center gap-2 transition-all"
+                  className="flex-1 py-4 bg-[#eaf0f6] border border-[#dde5ed] rounded-xl text-sm font-bold text-[#1C2B3A] hover:bg-[#dde5ed] flex items-center justify-center gap-2 transition-all"
                 >
                   <Copy className="w-4 h-4" /> COPY DATA
                 </button>
@@ -239,3 +239,4 @@ const ScanPage: React.FC = () => {
 };
 
 export default ScanPage;
+

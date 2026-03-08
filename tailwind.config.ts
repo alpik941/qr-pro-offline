@@ -6,25 +6,21 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: {
-          50: '#f0fdf4',
-          100: '#dcfce7',
-          500: '#22c55e',
-          600: '#16a34a',
-          700: '#15803d',
-          900: '#14532d',
+        arctic: {
+          bg: '#F4F7FA',
+          text: '#1C2B3A',
+          bright: '#0d1e2e',
+          muted: '#6b8299',
+          panel: '#ffffff',
+          panel2: '#eaf0f6',
+          border: '#dde5ed',
+          accent: '#1C2B3A',
         },
-        dark: {
-          900: '#0f1b4c',
-          800: '#1e2d5e',
-          700: '#2a3f7a',
-        }
-      },
-      backdropBlur: {
-        xs: '2px',
       },
       fontFamily: {
-        sans: ['Plus Jakarta Sans', 'sans-serif'],
+        display: ['DM Serif Display', 'serif'],
+        sans: ['Instrument Sans', 'sans-serif'],
+        mono: ['DM Mono', 'monospace'],
       },
     },
   },

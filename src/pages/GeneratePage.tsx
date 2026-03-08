@@ -137,7 +137,7 @@ const GeneratePage: React.FC = () => {
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
       {/* Settings & Input Column */}
       <div className="lg:col-span-2 space-y-6">
-        <div className="glass-card p-6 border-white/10 shadow-xl">
+        <div className="glass-card p-6 shadow-sm">
           {/* Tabs */}
           <div className="flex flex-wrap gap-2 mb-8">
             {typeTabs.map((t) => (
@@ -146,8 +146,8 @@ const GeneratePage: React.FC = () => {
                 onClick={() => setActiveType(t.id as DataType)}
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all ${
                   activeType === t.id
-                    ? 'bg-[#22c55e] text-white accent-shadow'
-                    : 'text-slate-400 hover:text-white hover:bg-white/5'
+                    ? 'bg-[#1C2B3A] text-[#F4F7FA] accent-shadow'
+                    : 'text-[#6b8299] hover:text-[#1C2B3A] hover:bg-[rgba(28,43,58,0.08)]'
                 }`}
               >
                 {t.icon} {t.label}
@@ -156,12 +156,12 @@ const GeneratePage: React.FC = () => {
             <div className="relative group" ref={moreRef}>
               <button
                 onClick={() => setShowMore(!showMore)}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold text-slate-400 hover:text-white hover:bg-white/5 transition-all"
+                className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold text-[#6b8299] hover:text-[#1C2B3A] hover:bg-[rgba(28,43,58,0.08)] transition-all"
               >
                 More <ChevronDown className="w-4 h-4" />
               </button>
               <div
-                className={`absolute top-full left-0 mt-2 w-48 glass-card border-white/10 p-2 z-20 shadow-2xl ${showMore ? 'block' : 'hidden'} group-hover:block`}
+                className={`absolute top-full left-0 mt-2 w-48 glass-card p-2 z-20 shadow-lg ${showMore ? 'block' : 'hidden'} group-hover:block`}
               >
                 {moreTypes.map((t) => (
                   <button
@@ -170,7 +170,7 @@ const GeneratePage: React.FC = () => {
                       setActiveType(t.id as DataType);
                       setShowMore(false);
                     }}
-                    className="flex items-center gap-3 w-full px-3 py-2 text-sm font-medium text-slate-400 hover:text-[#22c55e] hover:bg-[#22c55e]/5 rounded-lg transition-colors"
+                    className="flex items-center gap-3 w-full px-3 py-2 text-sm font-medium text-[#6b8299] hover:text-[#1C2B3A] hover:bg-[rgba(28,43,58,0.08)] rounded-lg transition-colors"
                   >
                     {t.icon} {t.label}
                   </button>
@@ -193,12 +193,12 @@ const GeneratePage: React.FC = () => {
 
             {activeType === 'text' && (
               <div className="relative">
-                <Type className="absolute left-4 top-5 w-5 h-5 text-[#22c55e]" />
+                <Type className="absolute left-4 top-5 w-5 h-5 text-[#1C2B3A]" />
                 <textarea
                   value={text}
                   onChange={(e) => setText(e.target.value)}
                   placeholder="Enter your message here..."
-                  className="w-full min-h-[120px] pl-12 pr-4 py-4 bg-[#1e2d5e] border border-white/10 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#22c55e]/50 transition-all resize-none"
+                  className="w-full min-h-[120px] pl-12 pr-4 py-4 bg-[#eaf0f6] border border-[#dde5ed] rounded-xl text-[#1C2B3A] placeholder:text-[#6b8299] focus:outline-none focus:border-[#1C2B3A] focus:shadow-[0_0_0_3px_rgba(28,43,58,0.08)] transition-all resize-none"
                 />
               </div>
             )}
@@ -210,21 +210,21 @@ const GeneratePage: React.FC = () => {
                   placeholder="SSID (Network Name)"
                   value={wifi.ssid}
                   onChange={(e) => setWifi({ ...wifi, ssid: e.target.value })}
-                  className="w-full px-4 py-3 bg-[#1e2d5e] border border-white/10 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#22c55e]/50"
+                  className="w-full px-4 py-3 bg-[#eaf0f6] border border-[#dde5ed] rounded-xl text-[#1C2B3A] placeholder:text-[#6b8299] focus:outline-none focus:border-[#1C2B3A] focus:shadow-[0_0_0_3px_rgba(28,43,58,0.08)]"
                 />
                 <input
                   type="password"
                   placeholder="Password"
                   value={wifi.password}
                   onChange={(e) => setWifi({ ...wifi, password: e.target.value })}
-                  className="w-full px-4 py-3 bg-[#1e2d5e] border border-white/10 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#22c55e]/50"
+                  className="w-full px-4 py-3 bg-[#eaf0f6] border border-[#dde5ed] rounded-xl text-[#1C2B3A] placeholder:text-[#6b8299] focus:outline-none focus:border-[#1C2B3A] focus:shadow-[0_0_0_3px_rgba(28,43,58,0.08)]"
                 />
                 <select
                   value={wifi.security}
                   onChange={(e) =>
                     setWifi({ ...wifi, security: e.target.value as WifiConfig['security'] })
                   }
-                  className="w-full px-4 py-3 bg-[#1e2d5e] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#22c55e]/50"
+                  className="w-full px-4 py-3 bg-[#eaf0f6] border border-[#dde5ed] rounded-xl text-[#1C2B3A] focus:outline-none focus:border-[#1C2B3A] focus:shadow-[0_0_0_3px_rgba(28,43,58,0.08)]"
                 >
                   <option value="WPA">WPA/WPA2</option>
                   <option value="WEP">WEP</option>
@@ -240,21 +240,21 @@ const GeneratePage: React.FC = () => {
                   placeholder="Full Name"
                   value={vcard.name}
                   onChange={(e) => setVcard({ ...vcard, name: e.target.value })}
-                  className="w-full px-4 py-3 bg-[#1e2d5e] border border-white/10 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#22c55e]/50"
+                  className="w-full px-4 py-3 bg-[#eaf0f6] border border-[#dde5ed] rounded-xl text-[#1C2B3A] placeholder:text-[#6b8299] focus:outline-none focus:border-[#1C2B3A] focus:shadow-[0_0_0_3px_rgba(28,43,58,0.08)]"
                 />
                 <input
                   type="text"
                   placeholder="Phone Number"
                   value={vcard.phone}
                   onChange={(e) => setVcard({ ...vcard, phone: e.target.value })}
-                  className="w-full px-4 py-3 bg-[#1e2d5e] border border-white/10 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#22c55e]/50"
+                  className="w-full px-4 py-3 bg-[#eaf0f6] border border-[#dde5ed] rounded-xl text-[#1C2B3A] placeholder:text-[#6b8299] focus:outline-none focus:border-[#1C2B3A] focus:shadow-[0_0_0_3px_rgba(28,43,58,0.08)]"
                 />
                 <input
                   type="email"
                   placeholder="Email Address"
                   value={vcard.email}
                   onChange={(e) => setVcard({ ...vcard, email: e.target.value })}
-                  className="w-full px-4 py-3 bg-[#1e2d5e] border border-white/10 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#22c55e]/50 sm:col-span-2"
+                  className="w-full px-4 py-3 bg-[#eaf0f6] border border-[#dde5ed] rounded-xl text-[#1C2B3A] placeholder:text-[#6b8299] focus:outline-none focus:border-[#1C2B3A] focus:shadow-[0_0_0_3px_rgba(28,43,58,0.08)] sm:col-span-2"
                 />
               </div>
             )}
@@ -266,20 +266,20 @@ const GeneratePage: React.FC = () => {
                   placeholder="Recipient Email"
                   value={email.to}
                   onChange={(e) => setEmail({ ...email, to: e.target.value })}
-                  className="w-full px-4 py-3 bg-[#1e2d5e] border border-white/10 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#22c55e]/50"
+                  className="w-full px-4 py-3 bg-[#eaf0f6] border border-[#dde5ed] rounded-xl text-[#1C2B3A] placeholder:text-[#6b8299] focus:outline-none focus:border-[#1C2B3A] focus:shadow-[0_0_0_3px_rgba(28,43,58,0.08)]"
                 />
                 <input
                   type="text"
                   placeholder="Subject"
                   value={email.subject}
                   onChange={(e) => setEmail({ ...email, subject: e.target.value })}
-                  className="w-full px-4 py-3 bg-[#1e2d5e] border border-white/10 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#22c55e]/50"
+                  className="w-full px-4 py-3 bg-[#eaf0f6] border border-[#dde5ed] rounded-xl text-[#1C2B3A] placeholder:text-[#6b8299] focus:outline-none focus:border-[#1C2B3A] focus:shadow-[0_0_0_3px_rgba(28,43,58,0.08)]"
                 />
                 <textarea
                   placeholder="Message Body"
                   value={email.body}
                   onChange={(e) => setEmail({ ...email, body: e.target.value })}
-                  className="w-full min-h-[80px] px-4 py-3 bg-[#1e2d5e] border border-white/10 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#22c55e]/50 sm:col-span-2 resize-none"
+                  className="w-full min-h-[80px] px-4 py-3 bg-[#eaf0f6] border border-[#dde5ed] rounded-xl text-[#1C2B3A] placeholder:text-[#6b8299] focus:outline-none focus:border-[#1C2B3A] focus:shadow-[0_0_0_3px_rgba(28,43,58,0.08)] sm:col-span-2 resize-none"
                 />
               </div>
             )}
@@ -291,13 +291,13 @@ const GeneratePage: React.FC = () => {
                   placeholder="Phone Number"
                   value={sms.phone}
                   onChange={(e) => setSms({ ...sms, phone: e.target.value })}
-                  className="w-full px-4 py-3 bg-[#1e2d5e] border border-white/10 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#22c55e]/50"
+                  className="w-full px-4 py-3 bg-[#eaf0f6] border border-[#dde5ed] rounded-xl text-[#1C2B3A] placeholder:text-[#6b8299] focus:outline-none focus:border-[#1C2B3A] focus:shadow-[0_0_0_3px_rgba(28,43,58,0.08)]"
                 />
                 <textarea
                   placeholder="Message"
                   value={sms.message}
                   onChange={(e) => setSms({ ...sms, message: e.target.value })}
-                  className="w-full min-h-[80px] px-4 py-3 bg-[#1e2d5e] border border-white/10 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#22c55e]/50 resize-none"
+                  className="w-full min-h-[80px] px-4 py-3 bg-[#eaf0f6] border border-[#dde5ed] rounded-xl text-[#1C2B3A] placeholder:text-[#6b8299] focus:outline-none focus:border-[#1C2B3A] focus:shadow-[0_0_0_3px_rgba(28,43,58,0.08)] resize-none"
                 />
               </div>
             )}
@@ -309,14 +309,14 @@ const GeneratePage: React.FC = () => {
                   placeholder="Latitude (e.g., 40.7128)"
                   value={location.lat}
                   onChange={(e) => setLocation({ ...location, lat: e.target.value })}
-                  className="w-full px-4 py-3 bg-[#1e2d5e] border border-white/10 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#22c55e]/50"
+                  className="w-full px-4 py-3 bg-[#eaf0f6] border border-[#dde5ed] rounded-xl text-[#1C2B3A] placeholder:text-[#6b8299] focus:outline-none focus:border-[#1C2B3A] focus:shadow-[0_0_0_3px_rgba(28,43,58,0.08)]"
                 />
                 <input
                   type="text"
                   placeholder="Longitude (e.g., -74.0060)"
                   value={location.lng}
                   onChange={(e) => setLocation({ ...location, lng: e.target.value })}
-                  className="w-full px-4 py-3 bg-[#1e2d5e] border border-white/10 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#22c55e]/50"
+                  className="w-full px-4 py-3 bg-[#eaf0f6] border border-[#dde5ed] rounded-xl text-[#1C2B3A] placeholder:text-[#6b8299] focus:outline-none focus:border-[#1C2B3A] focus:shadow-[0_0_0_3px_rgba(28,43,58,0.08)]"
                 />
               </div>
             )}
@@ -328,7 +328,7 @@ const GeneratePage: React.FC = () => {
                   placeholder="Bitcoin Address"
                   value={bitcoin.address}
                   onChange={(e) => setBitcoin({ ...bitcoin, address: e.target.value })}
-                  className="w-full px-4 py-3 bg-[#1e2d5e] border border-white/10 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#22c55e]/50"
+                  className="w-full px-4 py-3 bg-[#eaf0f6] border border-[#dde5ed] rounded-xl text-[#1C2B3A] placeholder:text-[#6b8299] focus:outline-none focus:border-[#1C2B3A] focus:shadow-[0_0_0_3px_rgba(28,43,58,0.08)]"
                 />
                 <input
                   type="number"
@@ -336,20 +336,20 @@ const GeneratePage: React.FC = () => {
                   placeholder="Amount (optional)"
                   value={bitcoin.amount}
                   onChange={(e) => setBitcoin({ ...bitcoin, amount: e.target.value })}
-                  className="w-full px-4 py-3 bg-[#1e2d5e] border border-white/10 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#22c55e]/50"
+                  className="w-full px-4 py-3 bg-[#eaf0f6] border border-[#dde5ed] rounded-xl text-[#1C2B3A] placeholder:text-[#6b8299] focus:outline-none focus:border-[#1C2B3A] focus:shadow-[0_0_0_3px_rgba(28,43,58,0.08)]"
                 />
               </div>
             )}
 
             {activeType === 'phone' && (
               <div className="relative">
-                <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#22c55e]" />
+                <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#1C2B3A]" />
                 <input
                   type="tel"
                   value={text}
                   onChange={(e) => setText(e.target.value)}
                   placeholder="+1 (555) 123-4567"
-                  className="w-full pl-12 pr-4 py-4 bg-[#1e2d5e] border border-white/10 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#22c55e]/50 transition-all"
+                  className="w-full pl-12 pr-4 py-4 bg-[#eaf0f6] border border-[#dde5ed] rounded-xl text-[#1C2B3A] placeholder:text-[#6b8299] focus:outline-none focus:border-[#1C2B3A] focus:shadow-[0_0_0_3px_rgba(28,43,58,0.08)] transition-all"
                 />
               </div>
             )}
@@ -359,7 +359,7 @@ const GeneratePage: React.FC = () => {
               disabled={isGenerating || !currentContent}
               className={`w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 transition-all ${
                 isGenerating || !currentContent
-                  ? 'bg-white/5 text-slate-500 cursor-not-allowed'
+                  ? 'bg-[#eaf0f6] text-[#6b8299] cursor-not-allowed'
                   : 'btn-primary'
               }`}
             >
@@ -370,14 +370,14 @@ const GeneratePage: React.FC = () => {
         </div>
 
         {/* Customization */}
-        <div className="glass-card p-6 border-white/10">
+        <div className="glass-card p-6">
           <div className="flex items-center justify-between mb-6">
-            <h3 className="text-lg font-bold flex items-center gap-2">
-              <Palette className="w-5 h-5 text-[#22c55e]" /> Customize Design
+            <h3 className="text-lg font-bold text-[#0d1e2e] flex items-center gap-2">
+              <Palette className="w-5 h-5 text-[#1C2B3A]" /> Customize Design
             </h3>
             <button
               onClick={() => setShowAdvanced(!showAdvanced)}
-              className="text-[#22c55e] text-sm font-bold hover:underline"
+              className="text-[#1C2B3A] text-sm font-bold hover:underline"
             >
               {showAdvanced ? 'Hide Options' : 'Show Options'}
             </button>
@@ -387,8 +387,8 @@ const GeneratePage: React.FC = () => {
             {/* Size Slider */}
             <div>
               <div className="flex items-center justify-between mb-3">
-                <label className="text-sm font-bold text-slate-400">QR CODE SIZE</label>
-                <span className="text-sm font-extrabold text-[#22c55e]">{settings.size}px</span>
+                <label className="text-sm font-bold text-[#6b8299]">QR CODE SIZE</label>
+                <span className="text-sm font-mono font-extrabold text-[#1C2B3A]">{settings.size}px</span>
               </div>
               <input
                 type="range"
@@ -396,14 +396,14 @@ const GeneratePage: React.FC = () => {
                 max={QR_SIZE_MAX}
                 value={settings.size}
                 onChange={(e) => updateSettings({ size: parseInt(e.target.value) })}
-                className="w-full h-2 bg-white/5 rounded-lg appearance-none cursor-pointer accent-[#22c55e]"
+                className="w-full h-2 bg-[#eaf0f6] rounded-lg appearance-none cursor-pointer accent-[#1C2B3A]"
               />
             </div>
 
             {/* Colors */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
-                <label className="block text-sm font-bold text-slate-400 mb-4 uppercase tracking-wider">
+                <label className="block text-sm font-bold text-[#6b8299] mb-4 uppercase tracking-wider">
                   QR Color
                 </label>
                 <div className="flex flex-wrap gap-2 mb-4">
@@ -411,13 +411,13 @@ const GeneratePage: React.FC = () => {
                     <button
                       key={color}
                       onClick={() => updateSettings({ fgColor: color })}
-                      className={`w-8 h-8 rounded-lg border-2 transition-all ${settings.fgColor === color ? 'border-[#22c55e] scale-110 shadow-lg' : 'border-transparent'}`}
+                      className={`w-8 h-8 rounded-lg border-2 transition-all ${settings.fgColor === color ? 'border-[#1C2B3A] scale-110 shadow-lg' : 'border-[#dde5ed]'}`}
                       style={{ background: color }}
                     />
                   ))}
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="relative w-10 h-10 rounded-lg overflow-hidden border border-white/10">
+                  <div className="relative w-10 h-10 rounded-lg overflow-hidden border border-[#dde5ed]">
                     <input
                       type="color"
                       value={settings.fgColor}
@@ -425,7 +425,7 @@ const GeneratePage: React.FC = () => {
                       className="absolute inset-[-5px] w-[150%] h-[150%] cursor-pointer"
                     />
                   </div>
-                  <span className="text-xs font-mono text-slate-400">
+                  <span className="text-xs font-mono text-[#6b8299]">
                     {settings.fgColor.toUpperCase()}
                   </span>
                 </div>
@@ -433,12 +433,12 @@ const GeneratePage: React.FC = () => {
 
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <label className="text-sm font-bold text-slate-400 uppercase tracking-wider">
+                  <label className="text-sm font-bold text-[#6b8299] uppercase tracking-wider">
                     Background
                   </label>
                   <button
                     onClick={() => updateSettings({ transparentBg: !settings.transparentBg })}
-                    className={`relative w-12 h-6 rounded-full transition-colors ${settings.transparentBg ? 'bg-[#22c55e]' : 'bg-white/10'}`}
+                    className={`relative w-12 h-6 rounded-full transition-colors ${settings.transparentBg ? 'bg-[#1C2B3A]' : 'bg-[#dde5ed]'}`}
                   >
                     <div
                       className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ${settings.transparentBg ? 'translate-x-6' : ''}`}
@@ -447,7 +447,7 @@ const GeneratePage: React.FC = () => {
                 </div>
                 {!settings.transparentBg && (
                   <div className="flex items-center gap-3">
-                    <div className="relative w-10 h-10 rounded-lg overflow-hidden border border-white/10">
+                    <div className="relative w-10 h-10 rounded-lg overflow-hidden border border-[#dde5ed]">
                       <input
                         type="color"
                         value={settings.bgColor}
@@ -455,21 +455,21 @@ const GeneratePage: React.FC = () => {
                         className="absolute inset-[-5px] w-[150%] h-[150%] cursor-pointer"
                       />
                     </div>
-                    <span className="text-xs font-mono text-slate-400">
+                    <span className="text-xs font-mono text-[#6b8299]">
                       BG: {settings.bgColor.toUpperCase()}
                     </span>
                   </div>
                 )}
                 {settings.transparentBg && (
-                  <span className="text-xs text-[#22c55e] font-bold">Transparent Enabled</span>
+                  <span className="text-xs text-[#1C2B3A] font-bold">Transparent Enabled</span>
                 )}
               </div>
             </div>
 
             {/* Error Correction */}
             {showAdvanced && (
-              <div className="pt-4 border-t border-white/5">
-                <label className="block text-sm font-bold text-slate-400 mb-3">
+              <div className="pt-4 border-t border-[#dde5ed]">
+                <label className="block text-sm font-bold text-[#6b8299] mb-3">
                   ERROR CORRECTION
                 </label>
                 <div className="grid grid-cols-4 gap-2">
@@ -479,8 +479,8 @@ const GeneratePage: React.FC = () => {
                       onClick={() => updateSettings({ errorCorrectionLevel: level })}
                       className={`py-2 rounded-lg text-xs font-bold transition-all border ${
                         settings.errorCorrectionLevel === level
-                          ? 'bg-[#22c55e] border-[#22c55e] text-white'
-                          : 'bg-white/5 border-white/10 text-slate-500 hover:text-white'
+                          ? 'bg-[#1C2B3A] border-[#1C2B3A] text-[#F4F7FA]'
+                          : 'bg-[#eaf0f6] border-[#dde5ed] text-[#6b8299] hover:text-[#1C2B3A]'
                       }`}
                     >
                       {level}
@@ -495,15 +495,15 @@ const GeneratePage: React.FC = () => {
 
       {/* Preview Column */}
       <div className="space-y-6">
-        <div className="glass-card p-6 border-white/10 sticky top-24">
-          <div className="aspect-square bg-[#1e2d5e] rounded-2xl flex items-center justify-center p-8 mb-6 border border-white/5 shadow-inner">
+        <div className="glass-card p-6 sticky top-24">
+          <div className="aspect-square bg-[#eaf0f6] rounded-2xl flex items-center justify-center p-8 mb-6 border border-[#dde5ed] shadow-inner">
             {lastQr ? (
               <div className="relative group overflow-hidden rounded-xl">
                 <img src={lastQr.dataUrl} alt="Preview" className="w-full h-full object-contain" />
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
+                <div className="absolute inset-0 bg-[#1C2B3A]/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
                   <button
                     onClick={handleCopy}
-                    className="p-2 bg-white/10 rounded-full hover:bg-white/20 text-white transition-all"
+                    className="p-2 bg-white/20 rounded-full hover:bg-white/30 text-white transition-all"
                   >
                     <Copy className="w-5 h-5" />
                   </button>
@@ -511,8 +511,8 @@ const GeneratePage: React.FC = () => {
               </div>
             ) : (
               <div className="text-center">
-                <QrCode className="w-16 h-16 text-white/10 mx-auto mb-4" />
-                <p className="text-slate-500 text-sm font-medium px-8">
+                <QrCode className="w-16 h-16 text-[#dde5ed] mx-auto mb-4" />
+                <p className="text-[#6b8299] text-sm font-medium px-8">
                   Fill the form to generate preview
                 </p>
               </div>
@@ -525,8 +525,8 @@ const GeneratePage: React.FC = () => {
               disabled={!lastQr}
               className={`flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold transition-all ${
                 !lastQr
-                  ? 'bg-white/5 text-slate-600 cursor-not-allowed'
-                  : 'bg-[#1e3a8a] text-white hover:bg-[#1e40af]'
+                  ? 'bg-[#eaf0f6] text-[#6b8299] cursor-not-allowed'
+                  : 'bg-[#1C2B3A] text-[#F4F7FA] hover:bg-[#0d1e2e]'
               }`}
             >
               <Download className="w-4 h-4" /> PNG
@@ -536,8 +536,8 @@ const GeneratePage: React.FC = () => {
               disabled={!lastQr}
               className={`flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold transition-all ${
                 !lastQr
-                  ? 'bg-white/5 text-slate-600 cursor-not-allowed'
-                  : 'bg-[#1e3a8a] text-white hover:bg-[#1e40af]'
+                  ? 'bg-[#eaf0f6] text-[#6b8299] cursor-not-allowed'
+                  : 'bg-[#1C2B3A] text-[#F4F7FA] hover:bg-[#0d1e2e]'
               }`}
             >
               <FileImage className="w-4 h-4" /> SVG
@@ -547,28 +547,28 @@ const GeneratePage: React.FC = () => {
               disabled={!lastQr}
               className={`flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold transition-all ${
                 !lastQr
-                  ? 'bg-white/5 text-slate-600 cursor-not-allowed'
-                  : 'bg-white/10 text-white hover:bg-white/20'
+                  ? 'bg-[#eaf0f6] text-[#6b8299] cursor-not-allowed'
+                  : 'bg-[#eaf0f6] text-[#1C2B3A] border border-[#dde5ed] hover:bg-[#dde5ed]'
               }`}
             >
               <Copy className="w-4 h-4" /> Copy
             </button>
             <button
               onClick={() => navigate('/history')}
-              className="flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold bg-white/10 text-white hover:bg-white/20 transition-all"
+              className="flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold bg-[#eaf0f6] text-[#1C2B3A] border border-[#dde5ed] hover:bg-[#dde5ed] transition-all"
             >
               <History className="w-4 h-4" /> History
             </button>
           </div>
 
           {lastQr && (
-            <div className="mt-6 pt-6 border-t border-white/5 flex items-center justify-between">
-              <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">
+            <div className="mt-6 pt-6 border-t border-[#dde5ed] flex items-center justify-between">
+              <span className="text-[10px] font-mono font-bold text-[#6b8299] uppercase tracking-widest">
                 Type: {lastQr.type}
               </span>
               <button
                 onClick={() => navigate('/scan')}
-                className="flex items-center gap-1 text-[10px] font-bold text-[#22c55e] uppercase tracking-widest hover:underline"
+                className="flex items-center gap-1 text-[10px] font-bold text-[#1C2B3A] uppercase tracking-widest hover:underline"
               >
                 Scan Image <ScanLine className="w-3 h-3" />
               </button>
@@ -581,3 +581,4 @@ const GeneratePage: React.FC = () => {
 };
 
 export default GeneratePage;
+

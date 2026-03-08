@@ -58,16 +58,16 @@ const HistoryPage: React.FC = () => {
     <div className="max-w-4xl mx-auto space-y-8 pb-20">
       {/* Controls */}
       <div className="flex flex-col sm:flex-row gap-6 items-center justify-between">
-        <div className="flex glass-card p-1 border-white/10 w-full sm:w-auto">
+        <div className="flex glass-card p-1 border-[#dde5ed] w-full sm:w-auto">
           <button
             onClick={() => setActiveTab('generated')}
-            className={`flex-1 sm:flex-none px-6 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 justify-center ${activeTab === 'generated' ? 'bg-[#22c55e] text-white accent-shadow' : 'text-slate-400 hover:text-white'}`}
+            className={`flex-1 sm:flex-none px-6 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 justify-center ${activeTab === 'generated' ? 'bg-[#1C2B3A] text-[#F4F7FA] accent-shadow' : 'text-[#6b8299] hover:text-[#1C2B3A]'}`}
           >
             <ArrowUpRight className="w-4 h-4" /> GENERATED
           </button>
           <button
             onClick={() => setActiveTab('scanned')}
-            className={`flex-1 sm:flex-none px-6 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 justify-center ${activeTab === 'scanned' ? 'bg-[#22c55e] text-white accent-shadow' : 'text-slate-400 hover:text-white'}`}
+            className={`flex-1 sm:flex-none px-6 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 justify-center ${activeTab === 'scanned' ? 'bg-[#1C2B3A] text-[#F4F7FA] accent-shadow' : 'text-[#6b8299] hover:text-[#1C2B3A]'}`}
           >
             <ArrowDownLeft className="w-4 h-4" /> SCANNED
           </button>
@@ -75,7 +75,7 @@ const HistoryPage: React.FC = () => {
         <div className="flex items-center gap-2 w-full sm:w-auto">
           <button
             onClick={handleExport}
-            className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-xs font-bold text-white hover:bg-white/10 transition-all"
+            className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-[#eaf0f6] border border-[#dde5ed] rounded-xl text-xs font-bold text-[#1C2B3A] hover:bg-[#dde5ed] transition-all"
           >
             <Download className="w-4 h-4" /> EXPORT JSON
           </button>
@@ -90,18 +90,18 @@ const HistoryPage: React.FC = () => {
 
       {/* Search */}
       <div className="relative">
-        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#22c55e]" />
+        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#1C2B3A]" />
         <input
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search by data or content..."
-          className="w-full pl-11 pr-4 py-4 glass-card border-white/10 focus:outline-none focus:ring-2 focus:ring-[#22c55e]/50 text-white placeholder:text-slate-500"
+          className="w-full pl-11 pr-4 py-4 glass-card border-[#dde5ed] focus:outline-none focus:border-[#1C2B3A] focus:shadow-[0_0_0_3px_rgba(28,43,58,0.08)] text-[#1C2B3A] placeholder:text-[#6b8299]"
         />
         {search && (
           <button
             onClick={() => setSearch('')}
-            className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white"
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-[#6b8299] hover:text-[#1C2B3A]"
           >
             <X className="w-4 h-4" />
           </button>
@@ -114,10 +114,10 @@ const HistoryPage: React.FC = () => {
           items.map((item) => (
             <div
               key={item.id}
-              className="glass-card p-4 border-white/5 hover:border-[#22c55e]/30 transition-all group flex flex-col sm:flex-row gap-5 sm:items-center"
+              className="glass-card p-4 border-[#dde5ed] hover:border-[#1C2B3A]/30 transition-all group flex flex-col sm:flex-row gap-5 sm:items-center"
             >
               {activeTab === 'generated' && (item as GeneratedQr).dataUrl && (
-                <div className="w-20 h-20 bg-white rounded-xl p-1.5 flex-shrink-0 accent-shadow group-hover:scale-105 transition-transform">
+                <div className="w-20 h-20 bg-white rounded-xl p-1.5 flex-shrink-0 shadow-sm border border-[#dde5ed] group-hover:scale-105 transition-transform">
                   <img
                     src={(item as GeneratedQr).dataUrl}
                     alt="QR"
@@ -126,8 +126,8 @@ const HistoryPage: React.FC = () => {
                 </div>
               )}
               {activeTab === 'scanned' && (
-                <div className="w-20 h-20 bg-[#1e2d5e] rounded-xl flex items-center justify-center flex-shrink-0 border border-white/10 accent-shadow">
-                  <ArrowDownLeft className="w-8 h-8 text-[#22c55e]" />
+                <div className="w-20 h-20 bg-[#eaf0f6] rounded-xl flex items-center justify-center flex-shrink-0 border border-[#dde5ed]">
+                  <ArrowDownLeft className="w-8 h-8 text-[#1C2B3A]" />
                 </div>
               )}
 
@@ -136,28 +136,28 @@ const HistoryPage: React.FC = () => {
                   <span
                     className={`px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-widest ${
                       item.type === 'url'
-                        ? 'bg-blue-500/20 text-blue-400'
+                        ? 'bg-blue-500/20 text-blue-600'
                         : item.type === 'vcard'
-                          ? 'bg-purple-500/20 text-purple-400'
+                          ? 'bg-purple-500/20 text-purple-600'
                           : item.type === 'wifi'
-                            ? 'bg-green-500/20 text-green-400'
-                            : 'bg-white/10 text-slate-400'
+                            ? 'bg-green-500/20 text-green-600'
+                            : 'bg-[#eaf0f6] text-[#6b8299]'
                     }`}
                   >
                     {item.type}
                   </span>
-                  <div className="flex items-center gap-1.5 text-slate-500 text-[10px] font-bold">
+                  <div className="flex items-center gap-1.5 text-[#6b8299] text-[10px] font-bold">
                     <Clock className="w-3 h-3" />
                     {formatTimestamp(item.timestamp)}
                   </div>
                 </div>
-                <p className="text-white font-medium text-sm truncate pr-4">{item.data}</p>
+                <p className="text-[#1C2B3A] font-medium text-sm truncate pr-4">{item.data}</p>
               </div>
 
               <div className="flex items-center gap-2 opacity-100 sm:opacity-0 group-hover:opacity-100 transition-all">
                 <button
                   onClick={() => handleCopy(item.data)}
-                  className="p-3 bg-white/5 text-slate-400 hover:text-[#22c55e] hover:bg-[#22c55e]/10 rounded-xl transition-all"
+                  className="p-3 bg-[#eaf0f6] text-[#6b8299] hover:text-[#1C2B3A] hover:bg-[rgba(28,43,58,0.08)] rounded-xl transition-all"
                   title="Copy content"
                 >
                   <Copy className="w-4 h-4" />
@@ -167,7 +167,7 @@ const HistoryPage: React.FC = () => {
                     href={item.data}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 bg-white/5 text-slate-400 hover:text-[#22c55e] hover:bg-[#22c55e]/10 rounded-xl transition-all"
+                    className="p-3 bg-[#eaf0f6] text-[#6b8299] hover:text-[#1C2B3A] hover:bg-[rgba(28,43,58,0.08)] rounded-xl transition-all"
                     title="Visit link"
                   >
                     <ExternalLink className="w-4 h-4" />
@@ -176,7 +176,7 @@ const HistoryPage: React.FC = () => {
                 {activeTab === 'generated' && (
                   <button
                     onClick={() => downloadFile((item as GeneratedQr).dataUrl, `qr-${item.id}.png`)}
-                    className="p-3 bg-white/5 text-slate-400 hover:text-[#22c55e] hover:bg-[#22c55e]/10 rounded-xl transition-all"
+                    className="p-3 bg-[#eaf0f6] text-[#6b8299] hover:text-[#1C2B3A] hover:bg-[rgba(28,43,58,0.08)] rounded-xl transition-all"
                     title="Download PNG"
                   >
                     <Download className="w-4 h-4" />
@@ -186,7 +186,7 @@ const HistoryPage: React.FC = () => {
                   onClick={() =>
                     activeTab === 'generated' ? removeGenerated(item.id) : removeScanned(item.id)
                   }
-                  className="p-3 bg-white/5 text-slate-400 hover:text-red-500 hover:bg-red-500/10 rounded-xl transition-all"
+                  className="p-3 bg-[#eaf0f6] text-[#6b8299] hover:text-red-500 hover:bg-red-500/10 rounded-xl transition-all"
                   title="Remove from history"
                 >
                   <Trash2 className="w-4 h-4" />
@@ -195,14 +195,14 @@ const HistoryPage: React.FC = () => {
             </div>
           ))
         ) : (
-          <div className="text-center py-20 glass-card border-white/5 border-dashed">
-            <div className="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6">
-              <Search className="w-8 h-8 text-slate-600" />
+          <div className="text-center py-20 glass-card border-[#dde5ed] border-dashed">
+            <div className="w-16 h-16 bg-[#eaf0f6] rounded-full flex items-center justify-center mx-auto mb-6">
+              <Search className="w-8 h-8 text-[#6b8299]" />
             </div>
-            <h3 className="text-white font-extrabold mb-1 uppercase tracking-wider">
+            <h3 className="text-[#0d1e2e] font-extrabold mb-1 uppercase tracking-wider">
               No Items Found
             </h3>
-            <p className="text-slate-500 text-xs">
+            <p className="text-[#6b8299] text-xs">
               Your history is currently empty for this category.
             </p>
           </div>
@@ -213,3 +213,4 @@ const HistoryPage: React.FC = () => {
 };
 
 export default HistoryPage;
+
