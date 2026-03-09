@@ -213,4 +213,3 @@ const HistoryPage: React.FC = () => {
 };
 
 export default HistoryPage;
-

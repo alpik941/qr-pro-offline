@@ -388,7 +388,9 @@ const GeneratePage: React.FC = () => {
             <div>
               <div className="flex items-center justify-between mb-3">
                 <label className="text-sm font-bold text-[#6b8299]">QR CODE SIZE</label>
-                <span className="text-sm font-mono font-extrabold text-[#1C2B3A]">{settings.size}px</span>
+                <span className="text-sm font-mono font-extrabold text-[#1C2B3A]">
+                  {settings.size}px
+                </span>
               </div>
               <input
                 type="range"
@@ -581,4 +583,3 @@ const GeneratePage: React.FC = () => {
 };
 
 export default GeneratePage;
-

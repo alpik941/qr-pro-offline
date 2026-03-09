@@ -239,4 +239,3 @@ const ScanPage: React.FC = () => {
 };
 
 export default ScanPage;
-

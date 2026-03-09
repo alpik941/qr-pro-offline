@@ -10,7 +10,6 @@ const App: React.FC = () => {
   return (
     <HashRouter>
       <div className="relative min-h-screen flex flex-col bg-[#F4F7FA]">
-
         {/* Header */}
         <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-[#dde5ed] px-4 py-3 sm:px-6">
           <div className="max-w-5xl mx-auto flex items-center justify-between">
